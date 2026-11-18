@@ -1,5 +1,6 @@
 import {
   CapabilityNotSupportedError,
+  ConflictError,
   DecisionRejectedError,
   IntegrationError,
   NotFoundError,
@@ -24,6 +25,10 @@ export const classifyError = (error: unknown): ErrorClassification => {
 
   if (error instanceof NotFoundError) {
     return publicError(error, 404, 'NotFound', error.message);
+  }
+
+  if (error instanceof ConflictError) {
+    return publicError(error, 409, 'Conflict', error.message);
   }
 
   if (error instanceof CapabilityNotSupportedError) {

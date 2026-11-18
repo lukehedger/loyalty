@@ -1,3 +1,9 @@
+export {
+  type AccountRouter,
+  type AccountRouterDeps,
+  type CapabilityRouter,
+  createAccountRouter,
+} from './account-router.ts';
 export { registry } from './registry.ts';
 export {
   createRouter,

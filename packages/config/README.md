@@ -4,6 +4,9 @@ Runtime config served by AWS AppConfig and secrets read from AWS Secrets Manager
 
 ## Public API
 
+- `earnRateProfile` - the `earn-rate` profile: `{ earnRate }`, a whole number from 1 to `MAX_EARN_RATE` (100).
+- `featureFlagsProfile` - a placeholder profile.
+- `profiles` - every profile the stack deploys. Each needs a JSON file in every `environments/` folder.
 - `ConfigProfile<Schema>` - a profile name paired with the Zod schema its content must match.
 - `createConfigReader({ application, maxAgeSeconds?, fetchProfile? })` - returns a `ConfigReader` whose `read(profile)` fetches the profile from the `default` environment of the AppConfig application and parses it. Results are cached for `maxAgeSeconds` (60 by default).
 - `toDeployableProfile(profile, content)` - parses the profile's JSON file at synth time and returns `{ name, content, jsonSchema }` for the AppConfig construct, whose validator rejects any later content that does not match.

@@ -1,6 +1,19 @@
 // biome-ignore-all assist/source/organizeImports: sorting would move exports across the mode markers.
 // if: event-sourcing
 export type {
+  AccountApply,
+  AccountCommand,
+  AccountGate,
+  AccountGateDeps,
+  AccountRecorded,
+  DynamoDbAccountGateDeps,
+} from './account.ts';
+export {
+  createAccountGate,
+  createDynamoDbAccountGate,
+  parseAccountEvent,
+} from './account.ts';
+export type {
   Decision,
   EventSourcedCommand,
   EventSourcedGate,

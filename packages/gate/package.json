@@ -9,6 +9,9 @@
     "test:unit": "bun test"
   },
   "dependencies": {
-    "@loyalty/store": "workspace:*"
+    "@loyalty/core": "workspace:*",
+    "@loyalty/errors": "workspace:*",
+    "@loyalty/store": "workspace:*",
+    "zod": "catalog:"
   }
 }

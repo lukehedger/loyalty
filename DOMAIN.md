@@ -61,7 +61,7 @@ The balance is the only quantity that matters. `points_earned` adds to it. `poin
 
 ### 2.4 Idempotency
 
-An earn is keyed by its order ID, so one order earns at most once. A spend is keyed by a spend ID that the caller generates. The gate compares the key with the keys the stream already holds. A repeated earn or spend appends nothing and returns the current state. `open_account` takes no key. A second `open_account` is rejected under `account_opens_once`.
+An earn is keyed by its order ID, so one order earns at most once. A spend is keyed by a spend ID that the caller generates. The gate stores the key as `ORDER#{orderId}` or `SPEND#{spendId}`, so an order ID and a spend ID with the same value never collide. The gate compares the key with the keys the stream already holds. A repeated earn or spend appends nothing and returns the current state. `open_account` takes no key. A second `open_account` is rejected under `account_opens_once`.
 
 ### 2.5 Persistence
 
@@ -163,9 +163,21 @@ The order service and the rewards system call the API. Each request names the me
 
 ## 7. Contracts with the outside
 
-- **API schemas.** Zod schemas in `packages/schema/` define each request and each response. They are the only contract and they produce the OpenAPI spec. The API offers four operations: open an account, earn points, spend points and read the balance.
+- **API schemas.** Zod schemas in `packages/schema/` define each request and each response. They are the only contract and they produce the OpenAPI spec. The API offers the four operations below. Every route sits behind the Cognito authoriser.
+
+| Operation        | Route                              | Request body                                                   | Success                  |
+| ---------------- | ---------------------------------- | -------------------------------------------------------------- | ------------------------ |
+| Open an account  | `POST /accounts`                   | `{ "memberId": string }`                                       | 201                      |
+| Earn points      | `POST /accounts/{memberId}/earns`  | `{ "orderId": string, "purchaseAmount": integer }`             | 201, or 200 for a replay |
+| Spend points     | `POST /accounts/{memberId}/spends` | `{ "spendId": string, "rewardId": string, "points": integer }` | 201, or 200 for a replay |
+| Read the balance | `GET /accounts/{memberId}/balance` | None                                                           | 200                      |
+
+Every success returns `{ "memberId": string, "balance": integer }`. An ID is 1 to 128 characters. The purchase amount is 0 to 100,000,000 pence. The points of a spend are 0 to 100,000,000. A request outside these shapes returns 400. The caps keep every value far inside a safe integer, so no request can fail an assertion in the core. A zero amount is a valid shape. The core rejects it under `points_move_in_positive_amounts`.
+
+A rejection by the core returns 422 with the invariant name as the `code`. Reading the balance of a member with no account returns 404. A write that loses a race with another write to the same account returns 409. The caller retries it with the same ID, so the retry never earns or spends twice. Every error returns `{ "errorId", "code", "message" }`, where `errorId` is the request ID of the invocation.
+
 - **Shared identifiers.** The member ID comes from the identity system. The order ID comes from the order service. The reward ID comes from the rewards system. The spend ID comes from the caller. Loyalty stores these IDs and never reads the state behind them.
-- **Config.** The earn rate is a schema-validated value in an AppConfig profile in `packages/config/environments/`.
+- **Config.** The earn rate is the `earnRate` key of the `earn-rate` AppConfig profile in `packages/config/environments/`. Its schema accepts a whole number from 1 to 100. The `direct` adapter reads it for each earn and passes it into `earn_points`.
 - **Published events.** None.
 
 A contract changes only in ways that existing callers can absorb. You can add an optional field. To remove or rename a field, or to change its meaning, add a new version of the operation and retire the old one when no caller uses it.
@@ -190,4 +202,4 @@ A contract changes only in ways that existing callers can absorb. You can add an
 - **Currency.** The model assumes one currency, pounds sterling. A second currency needs a currency on each earn and an earn rate for each currency.
 - **Reversals.** A refunded order keeps the points it earned. Reversals are out of scope for now.
 - **Account lifecycle.** Accounts cannot be suspended or closed. Both are out of scope for now.
-- **Earn rate config.** The earn rate has no AppConfig profile yet. The first build adds one. A production profile needs your approval, because a merge to `main` makes it live.
+- **Earn rate config.** The `earn-rate` profile exists for the test environment. `environments/production/earn-rate.json` needs your approval, because a merge to `main` makes it live. Until it exists, the production synth fails.

@@ -1,5 +1,18 @@
 {
   "name": "@loyalty/api",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "test:unit": "bun test --preload ./tests/environment.ts"
+  },
+  "dependencies": {
+    "@loyalty/config": "workspace:*",
+    "@loyalty/errors": "workspace:*",
+    "@loyalty/router": "workspace:*",
+    "@loyalty/schema": "workspace:*",
+    "@loyalty/telemetry": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "catalog:"
+  }
 }

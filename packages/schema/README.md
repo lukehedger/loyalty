@@ -7,6 +7,10 @@ Zod schemas for every request and response shape. Each schema gives the compile-
 - `variants` - every supported variant. Add a member here when you add a variant.
 - `variantSchema` - parses a value into a supported variant.
 - `Variant` - the union of supported variants. The router registry is a `Record` over it, so a variant without an adapter fails to compile.
+- `openAccountRequestSchema`, `earnPointsRequestSchema`, `spendPointsRequestSchema` and `readBalanceRequestSchema` - parse the API Gateway event of each account operation into one flat request. Each joins the member ID from the path to the body.
+- `openAccountBodySchema`, `earnPointsBodySchema` and `spendPointsBodySchema` - the request bodies on their own, for the OpenAPI spec.
+- `balanceResponseSchema` - the response of every account operation: `{ memberId, balance }`.
+- `MAX_IDENTIFIER_LENGTH`, `MAX_PURCHASE_AMOUNT` and `MAX_SPEND_POINTS` - the caps. A request above a cap fails with 400 before it reaches the core.
 - `jsonBody(schema)` - wraps a schema so it parses a raw request body as JSON before it validates it. A missing or malformed body fails with a validation issue like any other.
 
 ## Example

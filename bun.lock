@@ -15,6 +15,16 @@
     },
     "api": {
       "name": "@loyalty/api",
+      "dependencies": {
+        "@loyalty/config": "workspace:*",
+        "@loyalty/errors": "workspace:*",
+        "@loyalty/router": "workspace:*",
+        "@loyalty/schema": "workspace:*",
+        "@loyalty/telemetry": "workspace:*",
+      },
+      "devDependencies": {
+        "@types/aws-lambda": "catalog:",
+      },
     },
     "async": {
       "name": "@loyalty/async",
@@ -38,6 +48,12 @@
     },
     "packages/adapters": {
       "name": "@loyalty/adapters",
+      "dependencies": {
+        "@loyalty/config": "workspace:*",
+        "@loyalty/errors": "workspace:*",
+        "@loyalty/gate": "workspace:*",
+        "@loyalty/schema": "workspace:*",
+      },
     },
     "packages/config": {
       "name": "@loyalty/config",
@@ -65,7 +81,10 @@
     "packages/gate": {
       "name": "@loyalty/gate",
       "dependencies": {
+        "@loyalty/core": "workspace:*",
+        "@loyalty/errors": "workspace:*",
         "@loyalty/store": "workspace:*",
+        "zod": "catalog:",
       },
     },
     "packages/router": {

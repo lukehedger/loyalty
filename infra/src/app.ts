@@ -25,6 +25,13 @@ const readBoolean = (name: string): boolean => {
   return value === 'true';
 };
 
+// A comma-separated list, because a pipeline variable holds one string.
+const readList = (name: string): readonly string[] =>
+  readRequiredEnv(name)
+    .split(',')
+    .map((item) => item.trim())
+    .filter((item) => item.length > 0);
+
 const env = {
   account: readRequiredEnv('CDK_DEFAULT_ACCOUNT'),
   region: readRequiredEnv('CDK_DEFAULT_REGION'),
@@ -38,4 +45,5 @@ new AppStack(app, 'app', {
   configEnvironment: readConfigEnvironment(),
   deletionProtection: readBoolean('DELETION_PROTECTION'),
   env,
+  userPoolArns: readList('USER_POOL_ARNS'),
 });

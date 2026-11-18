@@ -21,6 +21,14 @@ export class NotFoundError extends Error {
   }
 }
 
+// Another write landed on the same entity between the read and the write. A retry decides again on fresh state.
+export class ConflictError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'ConflictError';
+  }
+}
+
 export class CapabilityNotSupportedError extends Error {
   readonly variant: string;
   readonly capability: string;

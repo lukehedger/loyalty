@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import {
   CapabilityNotSupportedError,
+  ConflictError,
   classifyError,
   DecisionRejectedError,
   IntegrationError,
@@ -27,6 +28,15 @@ describe('classifyError', () => {
       statusCode: 404,
       code: 'NotFound',
       message: 'Order ord-1 not found',
+      outcome: 'client_error',
+    });
+  });
+
+  test('classifies a conflict as 409', () => {
+    expect(classifyError(new ConflictError('Retry the request'))).toEqual({
+      statusCode: 409,
+      code: 'Conflict',
+      message: 'Retry the request',
       outcome: 'client_error',
     });
   });

@@ -1,7 +1,12 @@
 import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { profiles, toDeployableProfile } from '../src/index.ts';
+import {
+  earnRateProfile,
+  MAX_EARN_RATE,
+  profiles,
+  toDeployableProfile,
+} from '../src/index.ts';
 
 const environments = ['test', 'production'] as const;
 
@@ -23,4 +28,19 @@ describe('profiles', () => {
       });
     }
   }
+});
+
+describe('earnRateProfile', () => {
+  test.each([1, MAX_EARN_RATE])('accepts an earn rate of %p', (earnRate) => {
+    expect(earnRateProfile.schema.safeParse({ earnRate }).success).toBe(true);
+  });
+
+  test.each([0, 1.5, MAX_EARN_RATE + 1])(
+    'rejects an earn rate of %p',
+    (earnRate) => {
+      expect(earnRateProfile.schema.safeParse({ earnRate }).success).toBe(
+        false,
+      );
+    },
+  );
 });

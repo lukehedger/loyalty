@@ -6,8 +6,10 @@ An adapter declares a `buildContext` and the capabilities it offers. The router 
 
 ## Public API
 
-- `CapabilitySignatures` - one entry per capability: the arguments it takes after the context and what it resolves to. Empty until the first capability is added.
-- `ContextDeps` - what the router passes to every `buildContext`, such as the gate and config. Empty until an adapter needs a dependency.
+- `CapabilitySignatures` - one entry per capability: the arguments it takes after the context and what it resolves to. The capabilities are `openAccount`, `earnPoints`, `spendPoints` and `readBalance`. A write resolves to a `RecordedBalance`, which says whether the gate approved or replayed it.
+- `ContextDeps` - what the router passes to every `buildContext`: the account gate, the config reader and the clock.
+- `createContextDeps({ tableName, config, clock })` - builds the `ContextDeps` over DynamoDB. Call it once per container.
+- `direct` - the adapter for requests made straight to Loyalty's API. It takes the time from the clock and the earn rate from the `earn-rate` profile. It reads the earn rate on each earn only, so a spend or a balance read never waits on AppConfig.
 - `Adapter<TContext>` - `buildContext(deps)` plus the opt-in `capabilities`.
 - `Capabilities<TContext>` and `Capability<TContext, TSignature>` - the capability map and one capability function.
 - `CapabilitySignature` and `SignatureMap` - the constraints the router and tests build on.

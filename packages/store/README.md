@@ -31,6 +31,8 @@ Event-sourcing:
 - `createInMemoryEventLog(deps)` - the same contract in memory.
 - `EventStream`, `StoredEvent`, `Append`, `AppendResult`, `EventLogClient` - the types around them.
 
+- `createDocumentClient()` - the DynamoDB document client both modes take. Create it once per container.
+
 CRUD:
 
 - `RecordStore<Value>` - `read(id)` returns the record and its version. `write(id, value, expected)` writes only when the record still has the expected status and version. An `expected` of `undefined` creates the record and fails if it exists.

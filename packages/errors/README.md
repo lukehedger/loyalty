@@ -6,6 +6,7 @@ One error class per kind of failure and the one place that maps them to API resp
 
 - `ValidationError(issues)` - the request failed its schema. 400. Takes Zod issues as they are and keeps them on the error for telemetry. The response never includes them, because they would tell a caller the expected request format.
 - `NotFoundError(message)` - the requested entity does not exist. 404.
+- `ConflictError(message)` - another write landed on the same entity between the read and the write. 409. The caller may retry.
 - `CapabilityNotSupportedError(variant, capability)` - the variant's adapter does not offer the capability. 422. The router raises it.
 - `DecisionRejectedError(code, message)` - the core rejected the command. 422 with the rejection code.
 - `IntegrationError(integration, options)` - an external system failed. 502. The public message never names the integration or the cause.

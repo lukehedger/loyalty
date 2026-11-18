@@ -28,6 +28,13 @@ Event-sourcing:
 - `Decision<Event, Rejection>` - what `decide` returns: `{ outcome: 'approved', events }` or `{ outcome: 'rejected', rejection }`.
 - `EventSourcedCommand`, `EventSourcedResult`, `EventSourcedGate`, `EventSourcedGateDeps` - the types around them.
 
+Account:
+
+- `createAccountGate({ eventLog })` - binds the core's `decide`, `evolve` and `initialState` to the event-sourced gate. `apply({ memberId, command })` takes a command of plain values and parses each one into its core brand. A value outside its brand throws `ValidationError`. The gate keys an earn as `ORDER#{orderId}` and a spend as `SPEND#{spendId}`. It resolves to `{ outcome: 'approved' | 'replayed', account }`. It throws a rejection as `DecisionRejectedError` with the invariant as its code and a conflict as `ConflictError`. `load(memberId)` returns the account or `undefined`.
+- `createDynamoDbAccountGate({ tableName, clock })` - the account gate over the DynamoDB event log. The log parses every event it reads with `parseAccountEvent`.
+- `parseAccountEvent(value)` - parses a stored event back into the core's branded `Event`. An unknown or out-of-brand event throws.
+- `AccountGate`, `AccountApply`, `AccountCommand`, `AccountRecorded`, `AccountGateDeps` and `DynamoDbAccountGateDeps` - the types around them.
+
 CRUD:
 
 - `createRecordGate({ recordStore, decide })` - returns `apply({ id, command })` and `load(id)`. `decide` receives `undefined` when no record exists. The write is conditional on the status and version that were read.

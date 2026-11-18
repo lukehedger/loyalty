@@ -1,7 +1,8 @@
 name: deploy
 
 # cd.yml calls this once per GitHub environment. Each environment holds its own
-# AWS_REGION, AWS_DEPLOY_ROLE_ARN, CONFIG_ENVIRONMENT and DELETION_PROTECTION variables.
+# AWS_REGION, AWS_DEPLOY_ROLE_ARN, CONFIG_ENVIRONMENT, DELETION_PROTECTION and
+# USER_POOL_ARNS (comma-separated Cognito user pool ARNs) variables.
 on:
   workflow_call:
     inputs:
@@ -47,4 +48,5 @@ jobs:
         env:
           CONFIG_ENVIRONMENT: ${{ vars.CONFIG_ENVIRONMENT }}
           DELETION_PROTECTION: ${{ vars.DELETION_PROTECTION }}
+          USER_POOL_ARNS: ${{ vars.USER_POOL_ARNS }}
         run: bun run cdk deploy --all --require-approval never

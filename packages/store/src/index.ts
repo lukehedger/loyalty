@@ -30,3 +30,4 @@ export type {
 } from './crud-dynamodb.ts';
 export { createDynamoDbRecordStore } from './crud-dynamodb.ts';
 // end
+export { createDocumentClient } from './document-client.ts';
