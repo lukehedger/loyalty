@@ -1,0 +1,8 @@
+{
+  "name": "@loyalty/status-line",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:unit": "bun test"
+  }
+}

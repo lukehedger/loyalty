@@ -1,0 +1,448 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.6.7/schema.json",
+  "files": {
+    "includes": ["**", "!.claude"]
+  },
+  "formatter": {
+    "indentStyle": "space"
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single"
+    }
+  },
+  "linter": {
+    "rules": {
+      "correctness": {
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error",
+        "noUndeclaredDependencies": "error"
+      },
+      "style": {
+        "noDefaultExport": "error",
+        "noInferrableTypes": "error",
+        "noNonNullAssertion": "error",
+        "noParameterAssign": "error",
+        "noUselessElse": "error",
+        "useAsConstAssertion": "error",
+        "useConsistentTypeDefinitions": {
+          "level": "error",
+          "options": {
+            "style": "type"
+          }
+        },
+        "useConst": "error",
+        "useFilenamingConvention": {
+          "level": "error",
+          "options": {
+            "filenameCases": ["kebab-case"],
+            "requireAscii": true
+          }
+        },
+        "useImportType": "error",
+        "useNodejsImportProtocol": "error"
+      },
+      "suspicious": {
+        "noConsole": "error",
+        "noExplicitAny": "error",
+        "noTsIgnore": "error",
+        "noVar": "error",
+        "noImportCycles": "error"
+      }
+    }
+  },
+  "markdown": {
+    "parser": {
+      "frontmatter": true
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["api/**", "async/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": [
+                      "@loyalty/*",
+                      "!@loyalty/schema",
+                      "!@loyalty/router",
+                      "!@loyalty/telemetry",
+                      "!@loyalty/config",
+                      "@aws-sdk/*",
+                      "!@loyalty/errors"
+                    ],
+                    "message": "A handler only parses, validates, routes and maps the result. It calls the schema and the router. Move this logic down a layer."
+                  },
+                  {
+                    "group": [
+                      "../**/api/**",
+                      "../**/async/**",
+                      "../**/core/**",
+                      "../**/infra/**",
+                      "../**/packages/**",
+                      "../**/tools/**"
+                    ],
+                    "message": "Import another workspace package by its name so the layer rules apply."
+                  },
+                  {
+                    "group": ["bun", "bun:*", "!bun:test"],
+                    "message": "Bun is dev tooling only. Deployed code runs on Node.js."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": ["packages/router/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": [
+                      "@loyalty/*",
+                      "!@loyalty/adapters",
+                      "!@loyalty/schema",
+                      "!@loyalty/telemetry",
+                      "!@loyalty/config",
+                      "!@loyalty/errors"
+                    ],
+                    "message": "The router only resolves the adapter for a variant. It calls the adapters and nothing below them."
+                  },
+                  {
+                    "group": [
+                      "../**/api/**",
+                      "../**/async/**",
+                      "../**/core/**",
+                      "../**/infra/**",
+                      "../**/packages/**",
+                      "../**/tools/**"
+                    ],
+                    "message": "Import another workspace package by its name so the layer rules apply."
+                  },
+                  {
+                    "group": ["bun", "bun:*", "!bun:test"],
+                    "message": "Bun is dev tooling only. Deployed code runs on Node.js."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": ["packages/adapters/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": [
+                      "@loyalty/*",
+                      "!@loyalty/gate",
+                      "!@loyalty/schema",
+                      "!@loyalty/telemetry",
+                      "!@loyalty/config",
+                      "!@loyalty/errors"
+                    ],
+                    "message": "An adapter translates a request into a command and passes it to the gate. It calls nothing below the gate."
+                  },
+                  {
+                    "group": [
+                      "../**/api/**",
+                      "../**/async/**",
+                      "../**/core/**",
+                      "../**/infra/**",
+                      "../**/packages/**",
+                      "../**/tools/**"
+                    ],
+                    "message": "Import another workspace package by its name so the layer rules apply."
+                  },
+                  {
+                    "group": ["bun", "bun:*", "!bun:test"],
+                    "message": "Bun is dev tooling only. Deployed code runs on Node.js."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": ["packages/gate/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": [
+                      "@loyalty/*",
+                      "!@loyalty/core",
+                      "!@loyalty/store",
+                      "!@loyalty/telemetry",
+                      "!@loyalty/config",
+                      "!@loyalty/errors"
+                    ],
+                    "message": "The gate loads state from the store, asks the core for a decision and persists it. It calls only the core and the store."
+                  },
+                  {
+                    "group": [
+                      "../**/api/**",
+                      "../**/async/**",
+                      "../**/core/**",
+                      "../**/infra/**",
+                      "../**/packages/**",
+                      "../**/tools/**"
+                    ],
+                    "message": "Import another workspace package by its name so the layer rules apply."
+                  },
+                  {
+                    "group": ["bun", "bun:*", "!bun:test"],
+                    "message": "Bun is dev tooling only. Deployed code runs on Node.js."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": ["packages/store/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": [
+                      "@loyalty/*",
+                      "!@loyalty/telemetry",
+                      "!@loyalty/config"
+                    ],
+                    "message": "The store persists state. It knows nothing of the layers above it, including the core."
+                  },
+                  {
+                    "group": [
+                      "../**/api/**",
+                      "../**/async/**",
+                      "../**/core/**",
+                      "../**/infra/**",
+                      "../**/packages/**",
+                      "../**/tools/**"
+                    ],
+                    "message": "Import another workspace package by its name so the layer rules apply."
+                  },
+                  {
+                    "group": ["bun", "bun:*", "!bun:test"],
+                    "message": "Bun is dev tooling only. Deployed code runs on Node.js."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": ["packages/config/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": [
+                      "@loyalty/*",
+                      "!@loyalty/schema",
+                      "!@loyalty/telemetry"
+                    ],
+                    "message": "Config depends only on the schema and telemetry packages."
+                  },
+                  {
+                    "group": [
+                      "../**/api/**",
+                      "../**/async/**",
+                      "../**/core/**",
+                      "../**/infra/**",
+                      "../**/packages/**",
+                      "../**/tools/**"
+                    ],
+                    "message": "Import another workspace package by its name so the layer rules apply."
+                  },
+                  {
+                    "group": ["bun", "bun:*", "!bun:test"],
+                    "message": "Bun is dev tooling only. Deployed code runs on Node.js."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "packages/schema/**",
+        "packages/telemetry/**",
+        "packages/errors/**"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": ["@loyalty/*"],
+                    "message": "This package is a leaf. It depends on no other workspace package."
+                  },
+                  {
+                    "group": [
+                      "../**/api/**",
+                      "../**/async/**",
+                      "../**/core/**",
+                      "../**/infra/**",
+                      "../**/packages/**",
+                      "../**/tools/**"
+                    ],
+                    "message": "Import another workspace package by its name so the layer rules apply."
+                  },
+                  {
+                    "group": ["bun", "bun:*", "!bun:test"],
+                    "message": "Bun is dev tooling only. Deployed code runs on Node.js."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "api/**",
+        "async/**",
+        "packages/**",
+        "!packages/constructs/**"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedGlobals": {
+              "level": "error",
+              "options": {
+                "deniedGlobals": {
+                  "Bun": "Bun is dev tooling only. Deployed code runs on Node.js."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": ["core/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": [
+                      "@loyalty/*",
+                      "@aws-sdk/*",
+                      "@aws-lambda-powertools/*",
+                      "@aws/*"
+                    ],
+                    "message": "The core is pure. It imports no other workspace package and no AWS library. Return a decision and let the gate do the I/O."
+                  },
+                  {
+                    "group": [
+                      "../**/api/**",
+                      "../**/async/**",
+                      "../**/core/**",
+                      "../**/infra/**",
+                      "../**/packages/**",
+                      "../**/tools/**"
+                    ],
+                    "message": "Import another workspace package by its name so the layer rules apply."
+                  },
+                  {
+                    "group": ["bun", "bun:*", "!bun:test"],
+                    "message": "Bun is dev tooling only. Deployed code runs on Node.js."
+                  }
+                ]
+              }
+            },
+            "noRestrictedGlobals": {
+              "level": "error",
+              "options": {
+                "deniedGlobals": {
+                  "Bun": "Bun is dev tooling only. Deployed code runs on Node.js.",
+                  "Date": "The core is deterministic. Pass the time in with the command.",
+                  "crypto": "The core is deterministic. Pass generated identifiers in with the command.",
+                  "fetch": "The core does no I/O. Return a decision and let the gate do the I/O.",
+                  "process": "The core reads no environment. Pass config in.",
+                  "setInterval": "The core does no scheduling.",
+                  "setTimeout": "The core does no scheduling."
+                }
+              }
+            }
+          },
+          "correctness": {
+            "noNodejsModules": "error"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["**/tests/**", "tools/**"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsole": "off"
+          }
+        }
+      }
+    }
+  ],
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  }
+}

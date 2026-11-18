@@ -1,0 +1,16 @@
+{
+  "name": "@loyalty/router",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test:unit": "bun test"
+  },
+  "dependencies": {
+    "@loyalty/adapters": "workspace:*",
+    "@loyalty/errors": "workspace:*",
+    "@loyalty/schema": "workspace:*"
+  }
+}

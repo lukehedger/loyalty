@@ -1,0 +1,7 @@
+{
+  "agent": "wren",
+  "statusLine": {
+    "type": "command",
+    "command": "bun \"$(git rev-parse --show-toplevel)/tools/status-line/scripts/status-line.ts\""
+  }
+}

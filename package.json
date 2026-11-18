@@ -1,0 +1,57 @@
+{
+  "name": "loyalty",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.4.4",
+  "workspaces": [
+    "api",
+    "async",
+    "core",
+    "infra",
+    "packages/*",
+    "tools/*"
+  ],
+  "scripts": {
+    "fitness": "bun tools/fitness/scripts/check.ts",
+    "fmt": "biome check --write",
+    "types": "bun check",
+    "mutation": "turbo mutation",
+    "test:unit": "turbo test:unit",
+    "verify": "bun fmt && bun types && bun fitness && bun test:unit"
+  },
+  "catalog": {
+    "@aws-lambda-powertools/logger": "2.36.0",
+    "@aws-lambda-powertools/metrics": "2.36.0",
+    "@aws-lambda-powertools/parameters": "2.36.0",
+    "@aws-lambda-powertools/tracer": "2.36.0",
+    "@aws-sdk/client-appconfigdata": "3.1164.0",
+    "@aws-sdk/client-dynamodb": "3.1164.0",
+    "@aws-sdk/client-secrets-manager": "3.1168.0",
+    "@aws-sdk/lib-dynamodb": "3.1168.0",
+    "@aws/durable-execution-sdk-js": "3.0.0",
+    "@aws/durable-execution-sdk-js-testing": "1.3.2",
+    "@biomejs/biome": "2.6.7",
+    "@stryker-mutator/core": "10.1.1",
+    "@types/aws-lambda": "8.10.164",
+    "@types/bun": "1.4.4",
+    "@types/node": "26.6.6",
+    "aws-cdk": "2.1148.1",
+    "aws-cdk-lib": "2.276.0",
+    "aws-xray-sdk-core": "3.12.0",
+    "constructs": "10.8.1",
+    "esbuild": "0.28.2",
+    "fast-check": "4.10.2",
+    "ts-pattern": "5.9.2",
+    "turbo": "2.11.11",
+    "typescript": "7.0.2",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "@types/bun": "catalog:",
+    "@types/node": "catalog:",
+    "esbuild": "catalog:",
+    "turbo": "catalog:",
+    "typescript": "catalog:"
+  }
+}

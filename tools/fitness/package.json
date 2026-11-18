@@ -1,0 +1,11 @@
+{
+  "name": "@loyalty/fitness",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:unit": "bun test"
+  },
+  "dependencies": {
+    "@loyalty/core": "workspace:*"
+  }
+}

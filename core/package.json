@@ -1,0 +1,16 @@
+{
+  "name": "@loyalty/core",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "mutation": "stryker run",
+    "test:unit": "bun test --pass-with-no-tests"
+  },
+  "devDependencies": {
+    "@stryker-mutator/core": "catalog:",
+    "fast-check": "catalog:"
+  }
+}

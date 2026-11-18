@@ -1,0 +1,16 @@
+{
+  "name": "infra",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cdk": "cdk",
+    "test:unit": "bun test"
+  },
+  "devDependencies": {
+    "@loyalty/config": "workspace:*",
+    "@loyalty/constructs": "workspace:*",
+    "aws-cdk": "catalog:",
+    "aws-cdk-lib": "catalog:",
+    "constructs": "catalog:"
+  }
+}

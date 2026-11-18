@@ -1,0 +1,7 @@
+# Copilot code review reads its rules from the pull request branch, so a human owner approves every change to them.
+/.github/copilot-instructions.md <owner>
+/CLAUDE.md <owner>
+/.claude/rules/ <owner>
+
+# A merge deploys these files to production as whole-profile replacements.
+/packages/config/environments/production/ <owner>

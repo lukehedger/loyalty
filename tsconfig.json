@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ESNext"],
+    "module": "preserve",
+    "moduleDetection": "force",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ESNext",
+    "verbatimModuleSyntax": true,
+    "types": ["bun"]
+  },
+  "include": [
+    "api/**/*.ts",
+    "async/**/*.ts",
+    "core/**/*.ts",
+    "infra/**/*.ts",
+    "packages/**/*.ts",
+    "tools/**/*.ts"
+  ],
+  "exclude": ["**/cdk.out/**", "**/.stryker-tmp/**"]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@loyalty/adapters",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test:unit": "bun test"
+  }
+}

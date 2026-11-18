@@ -1,0 +1,5 @@
+{
+  "name": "@loyalty/api",
+  "private": true,
+  "type": "module"
+}
