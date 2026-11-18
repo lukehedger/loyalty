@@ -202,4 +202,3 @@ A contract changes only in ways that existing callers can absorb. You can add an
 - **Currency.** The model assumes one currency, pounds sterling. A second currency needs a currency on each earn and an earn rate for each currency.
 - **Reversals.** A refunded order keeps the points it earned. Reversals are out of scope for now.
 - **Account lifecycle.** Accounts cannot be suspended or closed. Both are out of scope for now.
-- **Earn rate config.** The `earn-rate` profile exists for the test environment. `environments/production/earn-rate.json` needs your approval, because a merge to `main` makes it live. Until it exists, the production synth fails.
