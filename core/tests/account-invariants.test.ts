@@ -1,5 +1,5 @@
 import { describe } from 'bun:test';
-import type { Event, InvariantName } from '../src/index.ts';
+import type { Event, InvariantName } from '../index.ts';
 import {
   commandSequence,
   runCommands,

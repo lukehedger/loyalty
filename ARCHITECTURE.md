@@ -24,7 +24,7 @@ These properties let an agent verify its own work and reach near-deterministic o
 
 ### One stack definition, any number of instances
 
-All application infrastructure lives in one CDK stack definition. Every environment is an instance of it: production, staging and each disposable environment for a branch or an agent. Instances differ through config and account context only, never through per-environment infrastructure. One definition keeps each deployment atomic. It also means a disposable environment runs the same infrastructure as production. Internal tools with no application routes may have their own stack. Settings AWS holds once per account and region, such as API Gateway's CloudWatch role, live in `infra/src/account-stack.ts`, which every instance in the account shares.
+All application infrastructure lives in one CDK stack definition. Every environment is an instance of it: production, staging and each disposable environment for a branch or an agent. Instances differ through config and account context only, never through per-environment infrastructure. One definition keeps each deployment atomic. It also means a disposable environment runs the same infrastructure as production. Internal tools with no application routes may have their own stack. Settings AWS holds once per account and region, such as API Gateway's CloudWatch role, live in `infra/account-stack.ts`, which every instance in the account shares.
 
 ### Handlers stay thin
 
@@ -66,11 +66,11 @@ The supported variants are a union type and the router registry is a `Record` ov
 
 ### The core asserts what must never happen
 
-The core checks its negative space with `assert` and `unreachable` from `core/src/assert.ts`. Both throw `AssertionError`. Never catch it to carry on. The gate then persists nothing and the shell responds with a 500.
+The core checks its negative space with `assert` and `unreachable` from `core/assert.ts`. Both throw `AssertionError`. Never catch it to carry on. The gate then persists nothing and the shell responds with a 500.
 
 ### The code and DOMAIN.md share one vocabulary
 
-`core/src/vocabulary.ts` declares every command, event, status and invariant name that DOMAIN.md defines. Derive the core's name unions from it. Never redeclare a name as a string literal elsewhere. The domain drift fitness function fails when a name exists on one side only, so a change to the model updates both in the same change.
+`core/vocabulary.ts` declares every command, event, status and invariant name that DOMAIN.md defines. Derive the core's name unions from it. Never redeclare a name as a string literal elsewhere. The domain drift fitness function fails when a name exists on one side only, so a change to the model updates both in the same change.
 
 ### Reliability comes from observability, not retry machinery
 
@@ -109,6 +109,8 @@ A durable execution that exhausts its retries records FAILED instead of throwing
 - `infra/` - the CDK app
 - `tools/` - repo-internal CLIs that agents run: fitness functions, codegen from DOMAIN.md, seed data, ephemeral stack helpers
 - `docs/` - strategy documents and agent design
+
+Each package keeps its source files at its root, beside `tests/`. There is no `src/` directory.
 
 ## Stack
 

@@ -1,6 +1,6 @@
 import { test } from 'bun:test';
 import fc from 'fast-check';
-import type { InvariantName } from '../src/index.ts';
+import type { InvariantName } from '../index.ts';
 
 // The test name carries the invariant so the fitness functions can trace every DOMAIN.md invariant to its property.
 export const invariant = <T>(

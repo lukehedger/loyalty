@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { createInMemoryRecordStore } from '../src/index.ts';
+import { createInMemoryRecordStore } from '../index.ts';
 
 type Counter = { readonly status: 'open' | 'closed'; readonly count: number };
 

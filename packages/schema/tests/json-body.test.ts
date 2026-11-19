@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import { z } from 'zod';
-import { jsonBody } from '../src/index.ts';
+import { jsonBody } from '../index.ts';
 
 const requestSchema = jsonBody(
   z.object({ quantity: z.number().int().positive() }),

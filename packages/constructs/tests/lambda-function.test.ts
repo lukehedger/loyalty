@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { App, Duration, Stack } from 'aws-cdk-lib';
 import { Match, Template } from 'aws-cdk-lib/assertions';
-import { LambdaFunction, type LambdaFunctionProps } from '../src/index.ts';
+import { LambdaFunction, type LambdaFunctionProps } from '../index.ts';
 
 const ENTRY = new URL('fixtures/handler.ts', import.meta.url).pathname;
 

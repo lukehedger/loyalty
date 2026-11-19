@@ -13,12 +13,12 @@ Each call returns one of these outcomes. Nothing is thrown except store failures
 
 ## Modes
 
-A project uses one mode. Delete the other mode's file, its exports in `src/index.ts` and its test.
+A project uses one mode. Delete the other mode's file, its exports in `index.ts` and its test.
 
-| Mode           | Files                                                      |
-| -------------- | ---------------------------------------------------------- |
-| Event-sourcing | `src/event-sourcing.ts` and `tests/event-sourcing.test.ts` |
-| CRUD           | `src/crud.ts` and `tests/crud.test.ts`                     |
+| Mode           | Files                                                  |
+| -------------- | ------------------------------------------------------ |
+| Event-sourcing | `event-sourcing.ts` and `tests/event-sourcing.test.ts` |
+| CRUD           | `crud.ts` and `tests/crud.test.ts`                     |
 
 ## Public API
 

@@ -4,7 +4,7 @@ import {
   mapErrorToResponse,
   NotFoundError,
   ValidationError,
-} from '../src/index.ts';
+} from '../index.ts';
 
 const parseBody = (body: string) => errorBodySchema.parse(JSON.parse(body));
 

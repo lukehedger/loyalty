@@ -12,7 +12,7 @@ import type {
   APIGatewayProxyResult,
   Context,
 } from 'aws-lambda';
-import { instrument } from '../src/index.ts';
+import { instrument } from '../index.ts';
 import { fakeTelemetry } from './fake-telemetry.ts';
 
 const apiEvent = (

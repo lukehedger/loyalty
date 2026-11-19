@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import type { Adapter } from '../src/index.ts';
+import type { Adapter } from '../index.ts';
 
 type Signatures = {
   readonly quote: {

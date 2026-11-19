@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test';
 import { App, Duration, Stack } from 'aws-cdk-lib';
 import { Match, Template } from 'aws-cdk-lib/assertions';
 import { Topic } from 'aws-cdk-lib/aws-sns';
-import { Api, LambdaFunction, Monitoring } from '../src/index.ts';
+import { Api, LambdaFunction, Monitoring } from '../index.ts';
 
 const synth = (): Template => {
   // Skipping esbuild keeps synth fast. No test here reads the bundle.

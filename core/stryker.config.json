@@ -5,7 +5,7 @@
     "command": "bun test --pass-with-no-tests"
   },
   "coverageAnalysis": "off",
-  "mutate": ["src/**/*.ts", "!src/index.ts", "!src/vocabulary.ts"],
+  "mutate": ["*.ts", "!index.ts", "!vocabulary.ts"],
   "thresholds": {
     "high": 90,
     "low": 80,

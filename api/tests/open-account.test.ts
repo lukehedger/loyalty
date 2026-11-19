@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { DecisionRejectedError } from '@loyalty/errors';
 import type { CapabilityRouter } from '@loyalty/router';
-import { makeHandler } from '../src/open-account.ts';
+import { makeHandler } from '../open-account.ts';
 import {
   apiEvent,
   fakeTelemetry,

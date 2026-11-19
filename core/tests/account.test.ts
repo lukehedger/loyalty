@@ -17,7 +17,7 @@ import {
   parseRewardId,
   parseSpendId,
   parseTimestamp,
-} from '../src/index.ts';
+} from '../index.ts';
 import { defined } from './account-arbitraries.ts';
 
 const memberId = defined(parseMemberId('member-1'));

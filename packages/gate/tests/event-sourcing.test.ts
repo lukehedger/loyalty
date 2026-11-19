@@ -4,7 +4,7 @@ import {
   createEventSourcedGate,
   type Decision,
   type EventSourcedCommand,
-} from '../src/index.ts';
+} from '../index.ts';
 
 type CounterState = {
   readonly status: 'unopened' | 'open' | 'closed';

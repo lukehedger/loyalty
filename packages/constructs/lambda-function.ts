@@ -10,7 +10,7 @@ import { NodejsFunction, OutputFormat } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs';
 import type { Construct } from 'constructs';
 
-const LOCK_FILE = fileURLToPath(new URL('../../../bun.lock', import.meta.url));
+const LOCK_FILE = fileURLToPath(new URL('../../bun.lock', import.meta.url));
 
 export type LambdaFunctionProps = {
   readonly description: string;

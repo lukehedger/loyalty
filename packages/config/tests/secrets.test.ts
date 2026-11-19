@@ -4,7 +4,7 @@ import {
   createSecretReader,
   type FetchSecret,
   SecretInvalidError,
-} from '../src/index.ts';
+} from '../index.ts';
 
 const credentials = z.object({
   clientId: z.string(),

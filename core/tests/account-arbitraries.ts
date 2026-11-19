@@ -14,7 +14,7 @@ import {
   parseRewardId,
   parseSpendId,
   parseTimestamp,
-} from '../src/index.ts';
+} from '../index.ts';
 
 export const defined = <Value>(value: Value | undefined): Value => {
   if (value === undefined) throw new Error('Test value failed to parse');

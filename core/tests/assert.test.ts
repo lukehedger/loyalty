@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { AssertionError, assert, unreachable } from '../src/index.ts';
+import { AssertionError, assert, unreachable } from '../index.ts';
 
 describe('assert', () => {
   test('returns when the condition holds', () => {

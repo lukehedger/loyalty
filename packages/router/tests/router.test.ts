@@ -1,7 +1,7 @@
 import { describe, expect, mock, test } from 'bun:test';
 import type { Adapter } from '@loyalty/adapters';
 import { CapabilityNotSupportedError } from '@loyalty/errors';
-import { createRouter, type Registry } from '../src/index.ts';
+import { createRouter, type Registry } from '../index.ts';
 
 type Signatures = {
   readonly quote: {

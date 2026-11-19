@@ -19,7 +19,7 @@ An adapter declares a `buildContext` and the capabilities it offers. The router 
 ## Example
 
 ```ts
-// src/index.ts
+// index.ts
 export type CapabilitySignatures = {
   readonly create: {
     readonly args: readonly [request: CreateOrderRequest];
@@ -27,7 +27,7 @@ export type CapabilitySignatures = {
   };
 };
 
-// src/acme.ts
+// acme.ts
 type AcmeContext = { readonly client: AcmeClient };
 
 export const acme: Adapter<AcmeContext> = {
