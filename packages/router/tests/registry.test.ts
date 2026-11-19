@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { direct } from '@loyalty/adapters';
 import { variants } from '@loyalty/schema';
-import { registry } from '../src/index.ts';
+import { registry } from '../index.ts';
 
 describe('registry', () => {
   test('routes the direct variant to the direct adapter', () => {

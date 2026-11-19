@@ -6,7 +6,7 @@ import {
   MAX_EARN_RATE,
   profiles,
   toDeployableProfile,
-} from '../src/index.ts';
+} from '../index.ts';
 
 const environments = ['test', 'production'] as const;
 

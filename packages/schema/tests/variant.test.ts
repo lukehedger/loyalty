@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { variantSchema, variants } from '../src/index.ts';
+import { variantSchema, variants } from '../index.ts';
 
 describe('variantSchema', () => {
   test('accepts every supported variant', () => {

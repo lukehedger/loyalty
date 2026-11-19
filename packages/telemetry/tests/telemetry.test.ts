@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, spyOn, test } from 'bun:test';
-import { createTelemetry, recordContext } from '../src/index.ts';
+import { createTelemetry, recordContext } from '../index.ts';
 
 const config = { serviceName: 'orders-create', namespace: 'Orders' };
 

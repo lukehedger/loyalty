@@ -14,15 +14,14 @@ paths:
 
 ```
 infra/
-  src/
-    app.ts       # CDK app
-    stack.ts     # the stack
+  app.ts         # CDK app
+  stack.ts       # the stack
   tests/
     stack.test.ts
-  cdk.json       # "app": "bun src/app.ts"
+  cdk.json       # "app": "bun app.ts"
 ```
 
-`cdk.json` stays at the `infra/` root, so the CLI runs and writes `cdk.out` there. Paths in `stack.ts` resolve relative to `src/`.
+`cdk.json` stays at the `infra/` root, so the CLI runs and writes `cdk.out` there. Paths in `stack.ts` resolve relative to `infra/`.
 
 Run the CDK CLI from the catalog-pinned `aws-cdk` package through a `cdk` script, with no wrapper around it.
 

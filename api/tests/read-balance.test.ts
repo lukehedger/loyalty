@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { NotFoundError } from '@loyalty/errors';
 import type { CapabilityRouter } from '@loyalty/router';
-import { makeHandler } from '../src/read-balance.ts';
+import { makeHandler } from '../read-balance.ts';
 import {
   apiEvent,
   fakeTelemetry,

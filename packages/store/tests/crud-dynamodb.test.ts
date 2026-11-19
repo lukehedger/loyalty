@@ -10,10 +10,7 @@ import {
   type PutCommand,
 } from '@aws-sdk/lib-dynamodb';
 import { z } from 'zod';
-import {
-  createDynamoDbRecordStore,
-  type RecordStoreClient,
-} from '../src/index.ts';
+import { createDynamoDbRecordStore, type RecordStoreClient } from '../index.ts';
 
 const counterSchema = z.object({
   status: z.enum(['open', 'closed']),

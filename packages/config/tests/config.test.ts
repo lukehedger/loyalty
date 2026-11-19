@@ -5,7 +5,7 @@ import {
   createConfigReader,
   type FetchProfile,
   toDeployableProfile,
-} from '../src/index.ts';
+} from '../index.ts';
 
 const featureFlags = {
   name: 'feature-flags',

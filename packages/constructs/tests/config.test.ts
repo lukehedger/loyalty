@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test';
 import { App, Stack } from 'aws-cdk-lib';
 import { Match, Template } from 'aws-cdk-lib/assertions';
 import { Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
-import { Config } from '../src/index.ts';
+import { Config } from '../index.ts';
 
 const JSON_SCHEMA = {
   properties: { enabled: { type: 'boolean' } },

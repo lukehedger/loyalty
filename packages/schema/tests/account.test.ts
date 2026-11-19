@@ -8,7 +8,7 @@ import {
   openAccountRequestSchema,
   readBalanceRequestSchema,
   spendPointsRequestSchema,
-} from '../src/index.ts';
+} from '../index.ts';
 
 const event = (body: unknown, memberId = 'member-1') => ({
   pathParameters: { memberId },

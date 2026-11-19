@@ -15,7 +15,7 @@ The L3 CDK constructs that `infra/` builds the stack from. Each one wires an AWS
 ```ts
 const getOrder = new LambdaFunction(this, 'GetOrderFunction', {
   description: 'Returns one order to API clients',
-  entry: join(import.meta.dirname, '../../api/src/get-order.ts'),
+  entry: join(import.meta.dirname, '../api/get-order.ts'),
   functionName: 'get-order',
   memorySize: 512,
   timeout: Duration.seconds(10),

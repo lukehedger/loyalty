@@ -2,11 +2,11 @@
 
 This document defines the points ledger for a customer loyalty programme. Each member has one account. The account is an append-only stream of earns and spends. An append-only stream gives an audit trail for every point. It also lets the balance be rebuilt from history at any time. The model holds only accounts, earns and spends. Every other concern stays with the system that owns it.
 
-The code is the source of truth. Where this document and the code disagree, this document is stale and must be fixed. The authoritative definitions live in `core/src/account.ts`.
+The code is the source of truth. Where this document and the code disagree, this document is stale and must be fixed. The authoritative definitions live in `core/account.ts`.
 
 If a feature cannot be expressed within the model, change the model deliberately and update this document in the same change.
 
-Every name in backticks in the command, event, transition, status and invariant tables must match `core/src/vocabulary.ts` exactly. The domain drift fitness function fails when a name exists on one side only.
+Every name in backticks in the command, event, transition, status and invariant tables must match `core/vocabulary.ts` exactly. The domain drift fitness function fails when a name exists on one side only.
 
 ---
 
@@ -149,7 +149,7 @@ An empty stream means the account does not exist. It is the absence of state, so
 | `account_opens_once`              | `open_account` on an existing account is rejected.                        |
 | `points_need_an_account`          | Earns and spends on an empty stream are rejected.                         |
 
-`core/src/vocabulary.ts` declares every invariant name. A rejection names the invariant it protects. Each invariant has a property test, declared with the `invariant` helper in `core/tests/`, that holds for every generated sequence of commands. Only the core enforces invariants. The shell may validate shapes at the boundary, but it never decides whether a command is allowed.
+`core/vocabulary.ts` declares every invariant name. A rejection names the invariant it protects. Each invariant has a property test, declared with the `invariant` helper in `core/tests/`, that holds for every generated sequence of commands. Only the core enforces invariants. The shell may validate shapes at the boundary, but it never decides whether a command is allowed.
 
 ---
 
@@ -187,7 +187,7 @@ A contract changes only in ways that existing callers can absorb. You can add an
 ## 8. Checklist for a new feature
 
 - [ ] Does the feature use only the terms in the ubiquitous language?
-- [ ] Is every new command, event, status and invariant in the tables above and in `core/src/vocabulary.ts`?
+- [ ] Is every new command, event, status and invariant in the tables above and in `core/vocabulary.ts`?
 - [ ] Does every state change go through `decide` and `evolve`?
 - [ ] Does every new invariant have a property test?
 - [ ] Does the balance still change only through `points_earned` and `points_spent`?

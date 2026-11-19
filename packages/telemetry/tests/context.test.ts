@@ -3,7 +3,7 @@ import {
   createContextRecorder,
   recordContext,
   resetTelemetry,
-} from '../src/index.ts';
+} from '../index.ts';
 import { fakeTelemetry } from './fake-telemetry.ts';
 
 type OrderContext = {

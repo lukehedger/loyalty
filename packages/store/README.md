@@ -6,12 +6,12 @@ Every write is conditional. A write that loses a race returns `{ outcome: 'confl
 
 ## Modes
 
-A project uses one mode. Delete the other mode's files and their exports in `src/index.ts` and `tests/`.
+A project uses one mode. Delete the other mode's files and their exports in `index.ts` and `tests/`.
 
-| Mode           | Files                                                                     |
-| -------------- | ------------------------------------------------------------------------- |
-| Event-sourcing | `src/event-sourcing.ts`, `src/event-sourcing-dynamodb.ts` and their tests |
-| CRUD           | `src/crud.ts`, `src/crud-dynamodb.ts` and their tests                     |
+| Mode           | Files                                                             |
+| -------------- | ----------------------------------------------------------------- |
+| Event-sourcing | `event-sourcing.ts`, `event-sourcing-dynamodb.ts` and their tests |
+| CRUD           | `crud.ts`, `crud-dynamodb.ts` and their tests                     |
 
 ## Key layout
 

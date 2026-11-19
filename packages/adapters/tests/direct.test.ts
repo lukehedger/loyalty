@@ -7,7 +7,7 @@ import {
   type AccountGateDeps,
   createAccountGate,
 } from '@loyalty/gate';
-import { type ContextDeps, direct } from '../src/index.ts';
+import { type ContextDeps, direct } from '../index.ts';
 
 type EventLog = AccountGateDeps['eventLog'];
 type StoredEvents = Awaited<ReturnType<EventLog['read']>>['events'];

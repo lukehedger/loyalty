@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { createInMemoryEventLog } from '../src/index.ts';
+import { createInMemoryEventLog } from '../index.ts';
 
 type CounterEvent = { readonly type: 'incremented'; readonly by: number };
 

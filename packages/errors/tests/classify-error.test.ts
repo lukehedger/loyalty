@@ -7,7 +7,7 @@ import {
   IntegrationError,
   NotFoundError,
   ValidationError,
-} from '../src/index.ts';
+} from '../index.ts';
 
 describe('classifyError', () => {
   test('classifies a validation error as 400 without its issues', () => {

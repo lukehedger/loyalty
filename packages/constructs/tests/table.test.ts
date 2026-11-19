@@ -2,7 +2,7 @@ import { describe, test } from 'bun:test';
 import { App, Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { AttributeType } from 'aws-cdk-lib/aws-dynamodb';
-import { Table } from '../src/index.ts';
+import { Table } from '../index.ts';
 
 const synth = (deletionProtection: boolean): Template => {
   const stack = new Stack(new App(), 'TestStack');

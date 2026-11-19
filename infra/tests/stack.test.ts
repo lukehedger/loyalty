@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'bun:test';
 import { App } from 'aws-cdk-lib';
 import { Match, Template } from 'aws-cdk-lib/assertions';
-import { AccountStack } from '../src/account-stack.ts';
-import { AppStack, type ConfigEnvironment } from '../src/stack.ts';
+import { AccountStack } from '../account-stack.ts';
+import { AppStack, type ConfigEnvironment } from '../stack.ts';
 
 const env = { account: '123456789012', region: 'eu-west-1' };
 

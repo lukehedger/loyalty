@@ -5,7 +5,7 @@ import {
   NotFoundError,
 } from '@loyalty/errors';
 import type { CapabilityRouter } from '@loyalty/router';
-import { makeHandler } from '../src/earn-points.ts';
+import { makeHandler } from '../earn-points.ts';
 import {
   apiEvent,
   fakeTelemetry,

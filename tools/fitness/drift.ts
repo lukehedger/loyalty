@@ -14,7 +14,7 @@ const KINDS = [
   ['invariants', 'invariant'],
 ] as const;
 
-const VOCABULARY_FILE = 'core/src/vocabulary.ts';
+const VOCABULARY_FILE = 'core/vocabulary.ts';
 
 export const findDrift = (
   domain: DomainNames,

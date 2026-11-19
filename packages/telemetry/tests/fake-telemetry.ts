@@ -1,4 +1,4 @@
-import type { Telemetry } from '../src/index.ts';
+import type { Telemetry } from '../index.ts';
 
 type WideEvent = {
   readonly level: 'info' | 'error';

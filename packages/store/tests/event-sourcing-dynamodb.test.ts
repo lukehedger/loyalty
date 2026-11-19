@@ -12,7 +12,7 @@ import {
   TransactWriteCommand,
 } from '@aws-sdk/lib-dynamodb';
 import { z } from 'zod';
-import { createDynamoDbEventLog, type EventLogClient } from '../src/index.ts';
+import { createDynamoDbEventLog, type EventLogClient } from '../index.ts';
 
 type CounterEvent = { readonly type: 'incremented'; readonly by: number };
 type SentCommand = PutCommand | QueryCommand | TransactWriteCommand;
